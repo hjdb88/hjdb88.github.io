@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>hjdb88&#39;s blog</title>
+  
+  <subtitle>hjdb88&#39;s blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-01-02T14:55:15.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>hjdb88</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS 安装Tomcat7并启用APR模式</title>
+    <link href="http://yoursite.com/2018/01/02/CentOS%20%E5%AE%89%E8%A3%85Tomcat7%E5%B9%B6%E5%90%AF%E7%94%A8APR%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2018/01/02/CentOS 安装Tomcat7并启用APR模式/</id>
+    <published>2018-01-02T13:51:13.000Z</published>
+    <updated>2018-01-02T14:55:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CentOS-安装Tomcat7并启用APR模式"><a href="#CentOS-安装Tomcat7并启用APR模式" class="headerlink" title="CentOS 安装Tomcat7并启用APR模式"></a>CentOS 安装Tomcat7并启用APR模式</h1><ol><li><p>下载Tomcat(<a href="http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz" target="_blank" rel="noopener">下载地址</a>)、apr(<a href="http://mirrors.shuosc.org/apache//apr/apr-1.6.3.tar.gz" target="_blank" rel="noopener">下载地址</a>)、apr-util(<a href="http://mirrors.shuosc.org/apache//apr/apr-util-1.6.1.tar.gz" target="_blank" rel="noopener">下载地址</a>)、tomcat-native(<a href="http://mirror.bit.edu.cn/apache/tomcat/tomcat-connectors/native/1.2.16/source/tomcat-native-1.2.16-src.tar.gz" target="_blank" rel="noopener">下载地址</a>)</p></li><li><p>安装gcc和expat</p> <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> gcc</span><br><span class="line">yum -y <span class="keyword">install</span> expat-devel</span><br></pre></td></tr></table></figure></li><li><p>安装apr</p> <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apr<span class="number">-1.6</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd apr<span class="number">-1.6</span><span class="number">.3</span></span><br><span class="line">./configure --prefix=/usr/local/apr</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></li><li><p>安装apr-util</p> <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apr-util<span class="number">-1.6</span><span class="number">.1</span>.tar.gz</span><br><span class="line">cd apr-util<span class="number">-1.6</span><span class="number">.1</span></span><br><span class="line">./configure --with-apr=/usr/local/apr</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></li><li><p>安装tomcat-native</p> <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf tomcat-native<span class="number">-1.2</span><span class="number">.16</span>-src.tar.gz</span><br><span class="line">cd tomcat-native<span class="number">-1.2</span><span class="number">.16</span>-src/native/</span><br><span class="line">./configure --with-apr=/usr/local/apr --with-java-home=/usr/lib/jvm/java<span class="number">-1.8</span><span class="number">.0</span>/</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></li><li><p>配置环境变量</p> <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=$<span class="symbol">LD_LIBRARY_PATH:</span>/usr/local/apr/<span class="class"><span class="keyword">lib</span></span></span><br><span class="line">export LD_RUN_PATH=$<span class="symbol">LD_RUN_PATH:</span>/usr/local/apr/<span class="class"><span class="keyword">lib</span></span></span><br></pre></td></tr></table></figure></li><li><p>启动Tomact</p> <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat<span class="number">-7.0</span><span class="number">.82</span>.tar.gz</span><br><span class="line">mv apache-tomcat<span class="number">-7.0</span><span class="number">.82</span> tomcat<span class="number">-7.0</span><span class="number">.82</span></span><br><span class="line">cd tomcat<span class="number">-7.0</span><span class="number">.82</span>/</span><br><span class="line">bin/startup.sh</span><br><span class="line">tail -f logs/catalina.out</span><br><span class="line">bin/shutdown.sh</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CentOS-安装Tomcat7并启用APR模式&quot;&gt;&lt;a href=&quot;#CentOS-安装Tomcat7并启用APR模式&quot; class=&quot;headerlink&quot; title=&quot;CentOS 安装Tomcat7并启用APR模式&quot;&gt;&lt;/a&gt;CentOS 安装Tomca
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS yum安装jdk1.8</title>
+    <link href="http://yoursite.com/2018/01/02/CentOS%20yum%E5%AE%89%E8%A3%85jdk1.8/"/>
+    <id>http://yoursite.com/2018/01/02/CentOS yum安装jdk1.8/</id>
+    <published>2018-01-02T13:22:33.000Z</published>
+    <updated>2018-01-02T13:28:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CentOS-yum安装jdk1-8"><a href="#CentOS-yum安装jdk1-8" class="headerlink" title="CentOS yum安装jdk1.8"></a>CentOS yum安装jdk1.8</h1><ol><li><p>安装之前先检查一下系统有没有自带open-jdk</p> <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="keyword">qa</span> |<span class="keyword">grep</span> java</span><br><span class="line">rpm -<span class="keyword">qa</span> |<span class="keyword">grep</span> jdk</span><br><span class="line">rpm -<span class="keyword">qa</span> |<span class="keyword">grep</span> gcj</span><br></pre></td></tr></table></figure><ul><li>如果没有输入信息表示没有安装。</li><li>如果安装可以使用rpm -qa | grep java | xargs rpm -e –nodeps 批量卸载所有带有Java的文件,命令的关键字是java</li></ul></li><li><p>检索</p><ul><li><p>检索包含java的列表</p>  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="built_in">list</span> java*</span><br></pre></td></tr></table></figure></li><li><p>检索java-1.8的列表</p>  <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="type">list</span> java<span class="number">-1.8</span>*</span><br></pre></td></tr></table></figure></li></ul></li><li><p>安装1.8.0的所有文件</p> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yum</span> <span class="selector-tag">install</span> <span class="selector-tag">java-1</span><span class="selector-class">.8</span><span class="selector-class">.0-openjdk</span>* <span class="selector-tag">-y</span></span><br></pre></td></tr></table></figure></li><li><p>使用命令检查是否安装成功</p> <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -<span class="built_in">version</span></span><br></pre></td></tr></table></figure></li><li><p>安装结束,这样安装已经自动对path进行设置了。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CentOS-yum安装jdk1-8&quot;&gt;&lt;a href=&quot;#CentOS-yum安装jdk1-8&quot; class=&quot;headerlink&quot; title=&quot;CentOS yum安装jdk1.8&quot;&gt;&lt;/a&gt;CentOS yum安装jdk1.8&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搭建Vue环境</title>
+    <link href="http://yoursite.com/2017/12/29/%E6%90%AD%E5%BB%BAVue%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2017/12/29/搭建Vue环境/</id>
+    <published>2017-12-29T03:06:01.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="搭建Vue环境"><a href="#搭建Vue环境" class="headerlink" title="搭建Vue环境"></a>搭建Vue环境</h1><ol><li>下载安装node.js，安装完成后使用命令<code>node -v</code>查看node版本号。</li><li>使用命令<code>npm install -g cnpm --registry=http://registry.npm.taobao.org</code>安装cnpm，然后就用cnpm代替npm来安装依赖包了。了解更多cnpm请点击<a href="https://npm.taobao.org/" target="_blank" rel="noopener">前往</a>。</li><li>使用命令<code>cnpm install -g vue-cli</code>安装vue-cli脚手架。</li><li><p>使用vue-cli</p><ol><li>使用命令<code>vue init webpack firstVue</code>创建项目firstVue。</li><li>使用命令<code>cnpm install</code>安装依赖包。</li><li>使用命令<code>npm run dev</code>启动项目</li></ol></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;搭建Vue环境&quot;&gt;&lt;a href=&quot;#搭建Vue环境&quot; class=&quot;headerlink&quot; title=&quot;搭建Vue环境&quot;&gt;&lt;/a&gt;搭建Vue环境&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;下载安装node.js，安装完成后使用命令&lt;code&gt;node -v&lt;/code&gt;查看n
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>工具</title>
+    <link href="http://yoursite.com/2017/12/29/%E5%B7%A5%E5%85%B7/"/>
+    <id>http://yoursite.com/2017/12/29/工具/</id>
+    <published>2017-12-29T01:02:37.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><ol><li><a href="https://github.com/likfe/eventbus3-intellij-plugin" target="_blank" rel="noopener">https://github.com/likfe/eventbus3-intellij-plugin</a></li><li><a href="https://insight.io/" target="_blank" rel="noopener">https://insight.io/</a></li><li>容器</li><li></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;工具&quot;&gt;&lt;a href=&quot;#工具&quot; class=&quot;headerlink&quot; title=&quot;工具&quot;&gt;&lt;/a&gt;工具&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/likfe/eventbus3-intellij-plugin&quot; tar
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOs安装Docker</title>
+    <link href="http://yoursite.com/2017/12/06/CentOS%E5%AE%89%E8%A3%85Docker/"/>
+    <id>http://yoursite.com/2017/12/06/CentOS安装Docker/</id>
+    <published>2017-12-06T15:28:37.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CentOs安装Docker"><a href="#CentOs安装Docker" class="headerlink" title="CentOs安装Docker"></a>CentOs安装Docker</h1><h3 id="一、Linux安装Docker"><a href="#一、Linux安装Docker" class="headerlink" title="一、Linux安装Docker"></a>一、Linux安装Docker</h3><ol><li><p>国内主机安装Docker  </p><ol><li><p>使用国内镜像安装Docker  </p> <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.daocloud.io/docker | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure></li><li><p>启动Docker服务  </p> <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker <span class="literal">start</span></span><br></pre></td></tr></table></figure></li></ol></li><li><p>国外主机安装Docker  </p><ol><li><p>使用官网地址安装Docker  </p> <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span> | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure></li><li><p>启动Docker服务  </p> <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker <span class="literal">start</span></span><br></pre></td></tr></table></figure></li></ol></li><li><p>Centos使用yum安装Docker<br> 如果在国内使用该方式,推荐使用阿里云的yum源,配置方法请百度  </p><ol><li><p>升级现有依赖（建议）  </p> <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">update</span> -<span class="built_in">y</span></span><br></pre></td></tr></table></figure></li><li><p>安装Docker  </p> <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> docker -y</span><br></pre></td></tr></table></figure></li><li><p>启动Docker服务  </p> <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker <span class="literal">start</span></span><br></pre></td></tr></table></figure></li></ol></li><li><p><strong>设置Docker服务项开机自启</strong>( <strong>重要</strong> )  </p> <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="builtin-name">enable</span> docker</span><br></pre></td></tr></table></figure></li></ol><h3 id="二、下载-更新Docker镜像"><a href="#二、下载-更新Docker镜像" class="headerlink" title="二、下载/更新Docker镜像"></a>二、下载/更新Docker镜像</h3><ol><li><p>国内主机拉取/更新镜像  </p> <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull daocloud.io<span class="regexp">/fangzhengjin/</span>qiandao</span><br></pre></td></tr></table></figure></li><li><p>国外主机拉取/更新镜像  </p> <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull fangzhengjin/qiandao</span><br></pre></td></tr></table></figure></li><li><p>更新镜像需要删除并重新创建容器（<strong>需要手动备份数据库文件</strong>）,不删除重新创建容器则依然使用创建时的版本,或手动更新代码!  </p></li></ol><h3 id="三、创建容器"><a href="#三、创建容器" class="headerlink" title="三、创建容器"></a>三、创建容器</h3><ol><li><p>说明<br> Docker中容器的名称与ID是唯一的,如果需要重新创建容器,需要先删除之前的容器,见后面其他命令<br> 如果在创建容器后,自动启动容器出现问题,可能是端口冲突,你可以选择关闭占用80端口的程序<br> 或更改容器开放端口（容器内程序的监听端口制作时已更改为80）  </p> <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -d -p 你指定的端口:80 --name qiandao daocloud.io/fangzhengjin/qiandao</span></span><br><span class="line"><span class="bash">```  </span></span><br><span class="line"><span class="bash">注:如果你已经创建了容器,请删除后重新创建  </span></span><br><span class="line"><span class="bash">2. 国内主机  </span></span><br><span class="line"><span class="bash">1. 什么是Volume  </span></span><br><span class="line"><span class="bash">你可以把Volume理解为一个挂载点，意为将主机中的目录挂载到容器中，这样可以在容器中与主机挂载点的文件交互  </span></span><br><span class="line"><span class="bash">添加Volume需要添加以下参数  </span></span><br><span class="line"><span class="bash">-v 主机挂载点:容器挂载点</span></span><br></pre></td></tr></table></figure><pre><code>-v /root(建议使用绝对路径):/usr/src/root(建议使用绝对路径)<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">意为将主机中的<span class="regexp">/root目录 连接到容器中的 /u</span>sr<span class="regexp">/src/</span>root 位置,在容器中复制文件到<span class="regexp">/usr/</span>src<span class="regexp">/root中,其会出现在主机的/</span>root目录中</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. **设置容器重启动策略**  </span><br><span class="line">    重启动策略有以下三种：</span><br><span class="line">       <span class="number">1</span>. 始终重启(可用作开机自启,前提是Docker服务必须开机自启动)</span><br></pre></td></tr></table></figure>    --restart=always    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span> 退出状态非<span class="number">0</span>时重启</span><br></pre></td></tr></table></figure>    --restart=on-failure    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该方式可以指定遇到错误时尝试重启的最大次数,例出错时最大重启<span class="number">5</span>次</span><br></pre></td></tr></table></figure>    --restart=on-failure:5    <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>. 不重启<span class="comment">(**默认**)</span></span><br></pre></td></tr></table></figure>    --restart=no    <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>. 样例(始终重启<span class="comment">--开机时,如果Docker服务项已经启动则自动启动该容器)</span></span><br></pre></td></tr></table></figure>    docker run -d -p 80:80 --name qiandao --restart=always daocloud.io/fangzhengjin/qiandao    <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>. 不需要挂载<span class="keyword">Volume</span><span class="bash"></span></span><br></pre></td></tr></table></figure>docker run -d -p 80:80 --name qiandao daocloud.io/fangzhengjin/qiandao<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.</span> 需要挂载<span class="built_in">Volume</span>(在root目录下创建<span class="built_in">volume</span>,并连接至容器中/usr/src/app/<span class="built_in">volume</span>位置,也就是代码目录的<span class="built_in">volume</span>文件夹)</span><br></pre></td></tr></table></figure>mkdir -p /root/volumedocker run -d -p 80:80 --name qiandao -v /root/volume:/usr/src/app/volume daocloud.io/fangzhengjin/qiandao<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>. 国外主机  </span><br><span class="line"><span class="number">1</span>. 不需要挂载<span class="keyword">Volume</span><span class="bash"></span></span><br></pre></td></tr></table></figure>docker run -d -p 80:80 --name qiandao fangzhengjin/qiandao<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span> 需要挂载<span class="built_in">Volume</span>(在root目录下创建<span class="built_in">volume</span>,并连接至容器中/usr/src/app/<span class="built_in">volume</span>位置,也就是代码目录的<span class="built_in">volume</span>文件夹)</span><br></pre></td></tr></table></figure>mkdir -p /root/volumedocker run -d -p 80:80 --name qiandao -v /root/volume:/usr/src/app/volume fangzhengjin/qiandao<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 四、启动容器  </span></span></span><br><span class="line">1. 说明  </span><br><span class="line">首次创建容器后，将自动启动容器</span><br><span class="line">2. 手动启动容器</span><br></pre></td></tr></table></figure></code></pre><p> docker start qiandao</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 五、其他命令  </span></span></span><br><span class="line">1. 重启容器</span><br></pre></td></tr></table></figure><p> docker restart qiandao</p> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">2. </span>关闭容器</span><br></pre></td></tr></table></figure><p> docker stop qiandao</p> <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">3. </span>删除容器</span><br></pre></td></tr></table></figure><p> docker rm -v qiandao</p> <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    使用参数 -v 的作用是为了确保删除容器自动创建的Volume</span><br><span class="line"></span><br><span class="line"><span class="comment">### 六、其他</span></span><br><span class="line">```shell</span><br><span class="line">docker pull luamas/jetbrains-license-server</span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> <span class="attribute">--restart</span>=always -p 26768:26768 --name<span class="built_in"> server </span>-d luamas/jetbrains-license-server</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CentOs安装Docker&quot;&gt;&lt;a href=&quot;#CentOs安装Docker&quot; class=&quot;headerlink&quot; title=&quot;CentOs安装Docker&quot;&gt;&lt;/a&gt;CentOs安装Docker&lt;/h1&gt;&lt;h3 id=&quot;一、Linux安装Docker&quot;&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mongodb复制集群</title>
+    <link href="http://yoursite.com/2017/11/26/CentOS%207%E4%B8%8Bmongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/"/>
+    <id>http://yoursite.com/2017/11/26/CentOS 7下mongodb复制集群/</id>
+    <published>2017-11-26T13:56:37.000Z</published>
+    <updated>2018-01-02T13:17:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mongodb复制集群"><a href="#mongodb复制集群" class="headerlink" title="mongodb复制集群"></a>mongodb复制集群</h1><ol><li>在mongodb.conf中加入replSet的指定</li><li><p>初始化复制集，登录任意一台服务器的mongodb执行</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(&#123;_id:'test',members:[&#123;_id:1,host:'192.168.19.128:27017'&#125;]&#125;)</span><br></pre></td></tr></table></figure><p> 初始化参数说明：</p><ul><li>_id：复制集名称（第一个_id）</li><li>members：复制集服务器列表</li><li>_id：服务器的唯一ID（数组里_id）</li><li>host：服务器主机</li></ul></li><li><p>由主复制集添加复制集</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rs.add('192.168.19.129:27017')</span><br><span class="line">rs.add('192.168.19.130:27017')</span><br><span class="line">rs.add('192.168.19.131:27017')</span><br><span class="line">rs.add('192.168.19.132:27017')</span><br></pre></td></tr></table></figure><p> 出现报错：</p> <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"ok"</span> : <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"errmsg"</span> : <span class="string">"Quorum check failed because not enough voting nodes responded; required 2 but only the following 1 voting nodes responded: 192.168.19.128:27017; the following nodes did not respond affirmatively: 192.168.19.129:27017 failed with No route to host"</span>,</span><br><span class="line">    <span class="attr">"code"</span> : <span class="number">74</span>,</span><br><span class="line">    <span class="attr">"codeName"</span> : <span class="string">"NodeNotFound"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 原因：没有权限，复制集之间的互联也是需要验证的，所以要配置keyfile来满足这个需求，如果开启了 authorization ，投票节点通过证书的形式与复制集中其他节点进行认证。<br> 解决步骤：</p><pre><code>1. 创建一个keyfile,并且拷贝到其他从节点    <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl rand -base64 123456 &gt; /usr/local/mongodb-3.4.6/key/autokey</span><br><span class="line">chmod 400 /usr/local/mongodb-3.4.6/key/autokey</span><br></pre></td></tr></table></figure>2. 以keyFile 参数启动mongodb数据库,在数据库的配置文件添加以下信息：​<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keyFile=/usr/local/mongodb<span class="number">-3.4</span><span class="number">.6</span>/<span class="type">key</span>/autokey</span><br><span class="line">​</span><br></pre></td></tr></table></figure></code></pre> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(</span><br><span class="line">    &#123;</span><br><span class="line">        user: "root",</span><br><span class="line">        pwd: "123456",</span><br><span class="line">        roles: [</span><br><span class="line">            &#123; role: "userAdminAnyDatabase", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "clusterAdmin", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "root", db: "admin" &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">    </span><br><span class="line">db.getSiblingDB("admin").auth("root","123456")</span><br><span class="line"></span><br><span class="line">cfg = rs.conf()</span><br><span class="line">cfg.members[0].host='192.168.19.132:27017'</span><br><span class="line">cfg.members[0].priority=99</span><br><span class="line"></span><br><span class="line">rs.add("192.168.19.131:27017")</span><br></pre></td></tr></table></figure></li><li><p>由主复制集添加仲裁复制集</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.addArb('192.168.19.132:27017')</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;mongodb复制集群&quot;&gt;&lt;a href=&quot;#mongodb复制集群&quot; class=&quot;headerlink&quot; title=&quot;mongodb复制集群&quot;&gt;&lt;/a&gt;mongodb复制集群&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;在mongodb.conf中加入replSet的指定&lt;/
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 7下安装mongodb</title>
+    <link href="http://yoursite.com/2017/11/26/CentOS%207%E4%B8%8B%E5%AE%89%E8%A3%85mongodb/"/>
+    <id>http://yoursite.com/2017/11/26/CentOS 7下安装mongodb/</id>
+    <published>2017-11-26T12:12:12.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CentOS-7下安装mongodb"><a href="#CentOS-7下安装mongodb" class="headerlink" title="CentOS 7下安装mongodb"></a>CentOS 7下安装mongodb</h1><ol><li><p>下载mongodb</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.6.tgz</span><br></pre></td></tr></table></figure></li><li><p>解压mongodb</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mongodb-linux-x86_64-amazon-3.4.6.tgz</span><br></pre></td></tr></table></figure></li><li><p>将mongdb移至/usr/local</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv mongodb-linux-x86_64-amazon-3.4.6 /usr/local/mongodb-3.4.6</span><br></pre></td></tr></table></figure></li><li><p>创建mongodb.conf</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mongodb-3.4.6</span><br><span class="line">touch mongodb.conf</span><br><span class="line">vi mongodb.conf</span><br></pre></td></tr></table></figure><p> mongdb.conf写入以下内容</p> <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">port</span>=<span class="number">27017</span></span><br><span class="line"><span class="comment">#数据文件存放目录</span></span><br><span class="line"><span class="attr">dbpath</span>=/opt/mongodb/data</span><br><span class="line"><span class="comment">#日志文件路径</span></span><br><span class="line"><span class="attr">logpath</span>=/opt/mongodb/log/mongodb.log</span><br><span class="line"><span class="comment">#使用追加的方式写日志</span></span><br><span class="line"><span class="attr">logappend</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment">#以守护程序的方式启动，即在后台运行</span></span><br><span class="line"><span class="attr">fork</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment">#最大同时连接数，默认2000</span></span><br><span class="line"><span class="attr">maxConns</span>=<span class="number">2000</span></span><br><span class="line"><span class="comment">#允许所有IP访问，如果要限制访问，可指定以逗号分隔的ip地址</span></span><br><span class="line"><span class="attr">bind_ip</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line"><span class="comment">#是否启用身份认证</span></span><br><span class="line"><span class="attr">auth</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">nohttpinterface</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">rest</span>=<span class="literal">false</span></span><br><span class="line"><span class="comment">#复制集名称</span></span><br><span class="line"><span class="comment">#replSet=test1</span></span><br></pre></td></tr></table></figure></li><li><p>创建数据目录及日志目录</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /opt/mongodb/data</span><br><span class="line">mkdir -p /opt/mongodb/log</span><br><span class="line">touch /opt/mongodb/log/mongodb.log</span><br></pre></td></tr></table></figure></li><li><p>创建启动脚本</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch start.sh</span><br></pre></td></tr></table></figure><p> 写入一下内容</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">bin/mongod -f mongodb.conf</span><br></pre></td></tr></table></figure><p> 赋予脚本权限</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x start.sh</span><br></pre></td></tr></table></figure><p> 使用脚本启动服务</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure></li><li><p>设置mongodb开机启动<br> 添加mongodb系统服务</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/init.d/mongod</span><br></pre></td></tr></table></figure><p> 写入一下内容</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">ulimit</span> -SHn 655350</span><br><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># chkconfig: - 64 36</span></span><br><span class="line"><span class="comment"># description:mongod</span></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongod  --config /usr/<span class="built_in">local</span>/mongodb-3.4.6/mongodb.conf</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongo 127.0.0.1:27017/admin --<span class="built_in">eval</span> <span class="string">"db.auth('root','123456');db.shutdownServer()"</span></span><br><span class="line">;;</span><br><span class="line"><span class="comment">#db.auth('root','123456');当数据库进行了用户认证时，才需要加这一句，root和123456为用户名和密码</span></span><br><span class="line">status)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongo 127.0.0.1:27017/admin --<span class="built_in">eval</span> <span class="string">"db.stats()"</span></span><br><span class="line">;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure><p> 保存后，赋予脚本执行权限</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /ect/rc.d/init.d/mongod</span><br></pre></td></tr></table></figure><p> 启动mongodb服务</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mongod start</span><br></pre></td></tr></table></figure><p> 关闭mongodb服务</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mongod stop</span><br></pre></td></tr></table></figure><p> 将此服务设置为开机启动</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig mongod on</span><br></pre></td></tr></table></figure><p> 输入以上命令后重启，开启后输入一下指令验证mongodb是否启动(检测端口时候在使用中)</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :27017</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CentOS-7下安装mongodb&quot;&gt;&lt;a href=&quot;#CentOS-7下安装mongodb&quot; class=&quot;headerlink&quot; title=&quot;CentOS 7下安装mongodb&quot;&gt;&lt;/a&gt;CentOS 7下安装mongodb&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux压缩解压指令</title>
+    <link href="http://yoursite.com/2017/11/26/linux%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2017/11/26/linux压缩解压指令/</id>
+    <published>2017-11-26T12:08:12.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="linux压缩解压指令"><a href="#linux压缩解压指令" class="headerlink" title="linux压缩解压指令"></a>linux压缩解压指令</h1><ol><li><p>压缩</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar czvf filename.tar path</span><br></pre></td></tr></table></figure></li><li><p>解压</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf filename.tar</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;linux压缩解压指令&quot;&gt;&lt;a href=&quot;#linux压缩解压指令&quot; class=&quot;headerlink&quot; title=&quot;linux压缩解压指令&quot;&gt;&lt;/a&gt;linux压缩解压指令&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;压缩&lt;/p&gt;
+&lt;figure class=&quot;hig
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java应用服务器CPU占用过高原因排查</title>
+    <link href="http://yoursite.com/2017/11/04/Java%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%E5%8E%9F%E5%9B%A0%E6%8E%92%E6%9F%A5/"/>
+    <id>http://yoursite.com/2017/11/04/Java应用服务器CPU占用过高原因排查/</id>
+    <published>2017-11-04T14:08:32.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>Java应用服务器进程出现CPU占用率过高情况</p><h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><ol><li>找到占用CPU高的进程ID(PID)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure></li></ol><p><img src="http://upload-images.jianshu.io/upload_images/8752864-4d4c1ca9fcf1818a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="找到占用CPU高的进程"></p><ol><li>查看进程中耗时长的线程<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -p 1190 -H</span><br></pre></td></tr></table></figure></li></ol><p>或者<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -mp 1190 -o THREAD,tid,time | sort -rn</span><br></pre></td></tr></table></figure></p><p><img src="http://upload-images.jianshu.io/upload_images/8752864-93a0b4bda6d8edf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法一"></p><p><img src="http://upload-images.jianshu.io/upload_images/8752864-ce9964fb2cf2a699.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法二"></p><ol><li>将该线程ID转换成16进制<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf "%x\n" 1462</span><br></pre></td></tr></table></figure></li></ol><p><img src="http://upload-images.jianshu.io/upload_images/8752864-d9db086e439155f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换结果"></p><ol><li>借助JDK内置工具jstack查看具体的线程状态<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 1190 |grep 5b6 -A 30</span><br></pre></td></tr></table></figure></li></ol><p><img src="http://upload-images.jianshu.io/upload_images/8752864-9c9dab067a14f194.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线程状态"></p><ol><li>通过线程状态找出问题所在</li></ol><p>PS：本文图片为写本文章时添加的示例图</p><hr><p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;Java应用服务器进程出现CPU占用率过高情况&lt;/p&gt;
+&lt;h3 id=&quot;排查过程&quot;&gt;&lt;a href=&quot;#排查过程&quot; class=&quot;heade
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mac下更新ruby</title>
+    <link href="http://yoursite.com/2017/11/04/mac%E4%B8%8B%E6%9B%B4%E6%96%B0ruby/"/>
+    <id>http://yoursite.com/2017/11/04/mac下更新ruby/</id>
+    <published>2017-11-04T12:13:12.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</span><br></pre></td></tr></table></figure><h3 id="通过-brew-安装-Ruby-最新版本"><a href="#通过-brew-安装-Ruby-最新版本" class="headerlink" title="通过 brew 安装 Ruby 最新版本"></a>通过 brew 安装 Ruby 最新版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install ruby</span><br></pre></td></tr></table></figure><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><ol><li><p>修改文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure></li><li><p>添加一下内容</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RUBY_HOME</span>=/usr/local/Cellar/ruby/2.4.2_1</span><br><span class="line"><span class="attribute">PAHT</span>=<span class="variable">$RUBY_HOME</span>/bin:$PAHT</span><br><span class="line"><span class="builtin-name">export</span> PATH</span><br></pre></td></tr></table></figure></li><li><p>使环境变量配置生效</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure></li></ol><h3 id="查看是否配置是否生效"><a href="#查看是否配置是否生效" class="headerlink" title="查看是否配置是否生效"></a>查看是否配置是否生效</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -v</span><br></pre></td></tr></table></figure><p>以下结果代表安装成功<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="number">2.4</span><span class="number">.2</span>p198 (<span class="number">2017</span><span class="number">-09</span><span class="number">-14</span> revision <span class="number">59899</span>) [x86_64-darwin16]</span><br></pre></td></tr></table></figure></p><hr><p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;安装homebrew&quot;&gt;&lt;a href=&quot;#安装homebrew&quot; class=&quot;headerlink&quot; title=&quot;安装homebrew&quot;&gt;&lt;/a&gt;安装homebrew&lt;/h3&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2017/11/01/hello-world/"/>
+    <id>http://yoursite.com/2017/11/01/hello-world/</id>
+    <published>2017-11-01T11:13:12.000Z</published>
+    <updated>2018-01-02T12:55:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome! This is my very first post.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome! This is my very first post.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Sta
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
