@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>hjdb88&#39;s blog</title>
+  <title>安装zabbix监控mongodb | hjdb88&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
+  <meta name="description" content="安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web-mysql  安装客户端(如果服">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hjdb88&#39;s blog">
+<meta property="og:title" content="安装zabbix监控mongodb">
 <meta property="og:url" content="http://yoursite.com/2018/01/09/安装zabbix监控mongodb/index.html">
 <meta property="og:site_name" content="hjdb88&#39;s blog">
-<meta property="og:description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
+<meta property="og:description" content="安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web-mysql  安装客户端(如果服">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-09T13:05:05.000Z">
+<meta property="og:updated_time" content="2018-01-09T13:08:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hjdb88&#39;s blog">
-<meta name="twitter:description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
+<meta name="twitter:title" content="安装zabbix监控mongodb">
+<meta name="twitter:description" content="安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web-mysql  安装客户端(如果服">
   
     <link rel="alternative" href="/atom.xml" title="hjdb88&#39;s blog" type="application/atom+xml">
   
@@ -161,9 +161,24 @@
             <article id="post-安装zabbix监控mongodb" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安装zabbix监控mongodb
+    </h1>
+  
+
+        
+        <a href="/2018/01/09/安装zabbix监控mongodb/" class="archive-article-date">
+  	<time datetime="2018-01-09T14:13:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-09</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="安装zabbix监控mongodb"><a href="#安装zabbix监控mongodb" class="headerlink" title="安装zabbix监控mongodb"></a>安装zabbix监控mongodb</h2><h3 id="安装zabbix-server"><a href="#安装zabbix-server" class="headerlink" title="安装zabbix-server"></a>安装zabbix-server</h3><ol>
+        <h3 id="安装zabbix-server"><a href="#安装zabbix-server" class="headerlink" title="安装zabbix-server"></a>安装zabbix-server</h3><ol>
 <li><p>导入zabbix安装源</p>
  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http:<span class="regexp">//</span>repo.zabbix.com<span class="regexp">/zabbix/</span><span class="number">3.5</span><span class="regexp">/rhel/</span><span class="number">7</span><span class="regexp">/x86_64/</span>zabbix-release-<span class="number">3.5</span>-<span class="number">1</span>.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
 </li>
