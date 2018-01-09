@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CentOS 安装Tomcat7并启用APR模式 | hjdb88&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CentOS 安装Tomcat7并启用APR模式 下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./co">
+  <meta name="description" content="下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./configure --prefix=/usr/lo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装Tomcat7并启用APR模式">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/CentOS 安装Tomcat7并启用APR模式/index.html">
 <meta property="og:site_name" content="hjdb88&#39;s blog">
-<meta property="og:description" content="CentOS 安装Tomcat7并启用APR模式 下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./co">
+<meta property="og:description" content="下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./configure --prefix=/usr/lo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-02T14:55:15.000Z">
+<meta property="og:updated_time" content="2018-01-03T15:47:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装Tomcat7并启用APR模式">
-<meta name="twitter:description" content="CentOS 安装Tomcat7并启用APR模式 下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./co">
+<meta name="twitter:description" content="下载Tomcat(下载地址)、apr(下载地址)、apr-util(下载地址)、tomcat-native(下载地址)  安装gcc和expat  12yum -y install gccyum -y install expat-devel  安装apr  1234tar -zxvf apr-1.6.3.tar.gzcd apr-1.6.3./configure --prefix=/usr/lo">
   
     <link rel="alternative" href="/atom.xml" title="hjdb88&#39;s blog" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CentOS-安装Tomcat7并启用APR模式"><a href="#CentOS-安装Tomcat7并启用APR模式" class="headerlink" title="CentOS 安装Tomcat7并启用APR模式"></a>CentOS 安装Tomcat7并启用APR模式</h1><ol>
+        <ol>
 <li><p>下载Tomcat(<a href="http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz" target="_blank" rel="noopener">下载地址</a>)、apr(<a href="http://mirrors.shuosc.org/apache//apr/apr-1.6.3.tar.gz" target="_blank" rel="noopener">下载地址</a>)、apr-util(<a href="http://mirrors.shuosc.org/apache//apr/apr-util-1.6.1.tar.gz" target="_blank" rel="noopener">下载地址</a>)、tomcat-native(<a href="http://mirror.bit.edu.cn/apache/tomcat/tomcat-connectors/native/1.2.16/source/tomcat-native-1.2.16-src.tar.gz" target="_blank" rel="noopener">下载地址</a>)</p>
 </li>
 <li><p>安装gcc和expat</p>
@@ -200,6 +200,9 @@
  <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat<span class="number">-7.0</span><span class="number">.82</span>.tar.gz</span><br><span class="line">mv apache-tomcat<span class="number">-7.0</span><span class="number">.82</span> tomcat<span class="number">-7.0</span><span class="number">.82</span></span><br><span class="line">cd tomcat<span class="number">-7.0</span><span class="number">.82</span>/</span><br><span class="line">bin/startup.sh</span><br><span class="line">tail -f logs/catalina.out</span><br><span class="line">bin/shutdown.sh</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<hr>
+<p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p>
+<hr>
 
       
 
@@ -292,6 +295,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/01/09/安装zabbix监控mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2018/01/02/CentOS yum安装jdk1.8/" id="article-nav-older" class="article-nav-link-wrap">

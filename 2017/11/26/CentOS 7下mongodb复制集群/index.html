@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>mongodb复制集群 | hjdb88&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mongodb复制集群 在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明：  _id：复制集名称（第一个_id） members：复制集">
+  <meta name="description" content="在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明： * _id：复制集名称（第一个_id） * members：复制集服务器列表 *">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb复制集群">
 <meta property="og:url" content="http://yoursite.com/2017/11/26/CentOS 7下mongodb复制集群/index.html">
 <meta property="og:site_name" content="hjdb88&#39;s blog">
-<meta property="og:description" content="mongodb复制集群 在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明：  _id：复制集名称（第一个_id） members：复制集">
+<meta property="og:description" content="在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明： * _id：复制集名称（第一个_id） * members：复制集服务器列表 *">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-02T13:17:04.000Z">
+<meta property="og:updated_time" content="2018-01-04T14:12:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb复制集群">
-<meta name="twitter:description" content="mongodb复制集群 在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明：  _id：复制集名称（第一个_id） members：复制集">
+<meta name="twitter:description" content="在mongodb.conf中加入replSet的指定 初始化复制集，登录任意一台服务器的mongodb执行  1rs.initiate(&amp;#123;_id:&apos;test&apos;,members:[&amp;#123;_id:1,host:&apos;192.168.19.128:27017&apos;&amp;#125;]&amp;#125;)  初始化参数说明： * _id：复制集名称（第一个_id） * members：复制集服务器列表 *">
   
     <link rel="alternative" href="/atom.xml" title="hjdb88&#39;s blog" type="application/atom+xml">
   
@@ -178,18 +178,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="mongodb复制集群"><a href="#mongodb复制集群" class="headerlink" title="mongodb复制集群"></a>mongodb复制集群</h1><ol>
+        <ol>
 <li>在mongodb.conf中加入replSet的指定</li>
 <li><p>初始化复制集，登录任意一台服务器的mongodb执行</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(&#123;_id:'test',members:[&#123;_id:1,host:'192.168.19.128:27017'&#125;]&#125;)</span><br></pre></td></tr></table></figure>
 <p> 初始化参数说明：</p>
-<ul>
-<li>_id：复制集名称（第一个_id）</li>
-<li>members：复制集服务器列表</li>
-<li>_id：服务器的唯一ID（数组里_id）</li>
-<li>host：服务器主机</li>
-</ul>
-</li>
+<pre><code>* _id：复制集名称（第一个_id）
+* members：复制集服务器列表
+* _id：服务器的唯一ID（数组里_id）
+* host：服务器主机
+</code></pre></li>
 <li><p>由主复制集添加复制集</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rs.add('192.168.19.129:27017')</span><br><span class="line">rs.add('192.168.19.130:27017')</span><br><span class="line">rs.add('192.168.19.131:27017')</span><br><span class="line">rs.add('192.168.19.132:27017')</span><br></pre></td></tr></table></figure>
 <p> 出现报错：</p>
@@ -199,12 +197,18 @@
     <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl rand -base64 123456 &gt; /usr/local/mongodb-3.4.6/key/autokey</span><br><span class="line">chmod 400 /usr/local/mongodb-3.4.6/key/autokey</span><br></pre></td></tr></table></figure>
 
 2. 以keyFile 参数启动mongodb数据库,在数据库的配置文件添加以下信息：
-​<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keyFile=/usr/local/mongodb<span class="number">-3.4</span><span class="number">.6</span>/<span class="type">key</span>/autokey</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-</code></pre> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(</span><br><span class="line">    &#123;</span><br><span class="line">        user: "root",</span><br><span class="line">        pwd: "123456",</span><br><span class="line">        roles: [</span><br><span class="line">            &#123; role: "userAdminAnyDatabase", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "clusterAdmin", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "root", db: "admin" &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">    </span><br><span class="line">db.getSiblingDB("admin").auth("root","123456")</span><br><span class="line"></span><br><span class="line">cfg = rs.conf()</span><br><span class="line">cfg.members[0].host='192.168.19.132:27017'</span><br><span class="line">cfg.members[0].priority=99</span><br><span class="line"></span><br><span class="line">rs.add("192.168.19.131:27017")</span><br></pre></td></tr></table></figure>
-</li>
+    ​<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keyFile=/usr/local/mongodb<span class="number">-3.4</span><span class="number">.6</span>/<span class="type">key</span>/autokey</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+3. 创建用户，使用管理员用户登录添加从节点
+    <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(</span><br><span class="line">    &#123;</span><br><span class="line">        user: "root",</span><br><span class="line">        pwd: "123456",</span><br><span class="line">        roles: [</span><br><span class="line">            &#123; role: "userAdminAnyDatabase", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "clusterAdmin", db: "admin" &#125;,</span><br><span class="line">            &#123; role: "root", db: "admin" &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">    </span><br><span class="line">db.getSiblingDB("admin").auth("root","123456")</span><br><span class="line"></span><br><span class="line">cfg = rs.conf()</span><br><span class="line">cfg.members[0].host='192.168.19.132:27017'</span><br><span class="line">cfg.members[0].priority=99</span><br><span class="line"></span><br><span class="line">rs.add("192.168.19.131:27017")</span><br></pre></td></tr></table></figure>
+</code></pre></li>
 <li><p>由主复制集添加仲裁复制集</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.addArb('192.168.19.132:27017')</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.addArb('192.168.19.132:27017')</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<hr>
+<p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p>
+<hr>
 
       
 

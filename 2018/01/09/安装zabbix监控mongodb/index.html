@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>CentOS 7下安装mongodb | hjdb88&#39;s blog</title>
+  <title>hjdb88&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下载mongodb  1wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.6.tgz  解压mongodb  1tar zxvf mongodb-linux-x86_64-amazon-3.4.6.tgz  将mongdb移至/usr/local  1mv mongodb-linux-x86_64-amaz">
+  <meta name="description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7下安装mongodb">
-<meta property="og:url" content="http://yoursite.com/2017/11/26/CentOS 7下安装mongodb/index.html">
+<meta property="og:title" content="hjdb88&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/安装zabbix监控mongodb/index.html">
 <meta property="og:site_name" content="hjdb88&#39;s blog">
-<meta property="og:description" content="下载mongodb  1wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.6.tgz  解压mongodb  1tar zxvf mongodb-linux-x86_64-amazon-3.4.6.tgz  将mongdb移至/usr/local  1mv mongodb-linux-x86_64-amaz">
+<meta property="og:description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-03T15:42:26.000Z">
+<meta property="og:updated_time" content="2018-01-09T13:05:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7下安装mongodb">
-<meta name="twitter:description" content="下载mongodb  1wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.6.tgz  解压mongodb  1tar zxvf mongodb-linux-x86_64-amazon-3.4.6.tgz  将mongdb移至/usr/local  1mv mongodb-linux-x86_64-amaz">
+<meta name="twitter:title" content="hjdb88&#39;s blog">
+<meta name="twitter:description" content="安装zabbix监控mongodb安装zabbix-server 导入zabbix安装源  1rpm -ivh http://repo.zabbix.com/zabbix/3.5/rhel/7/x86_64/zabbix-release-3.5-1.el7.noarch.rpm  安装安装zabbix包  1yum install -y zabbix-server-mysql zabbix-web">
   
     <link rel="alternative" href="/atom.xml" title="hjdb88&#39;s blog" type="application/atom+xml">
   
@@ -158,72 +158,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CentOS 7下安装mongodb" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-安装zabbix监控mongodb" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      CentOS 7下安装mongodb
-    </h1>
-  
-
-        
-        <a href="/2017/11/26/CentOS 7下安装mongodb/" class="archive-article-date">
-  	<time datetime="2017-11-26T12:12:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>下载mongodb</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.6.tgz</span><br></pre></td></tr></table></figure>
+        <h2 id="安装zabbix监控mongodb"><a href="#安装zabbix监控mongodb" class="headerlink" title="安装zabbix监控mongodb"></a>安装zabbix监控mongodb</h2><h3 id="安装zabbix-server"><a href="#安装zabbix-server" class="headerlink" title="安装zabbix-server"></a>安装zabbix-server</h3><ol>
+<li><p>导入zabbix安装源</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http:<span class="regexp">//</span>repo.zabbix.com<span class="regexp">/zabbix/</span><span class="number">3.5</span><span class="regexp">/rhel/</span><span class="number">7</span><span class="regexp">/x86_64/</span>zabbix-release-<span class="number">3.5</span>-<span class="number">1</span>.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>解压mongodb</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mongodb-linux-x86_64-amazon-3.4.6.tgz</span><br></pre></td></tr></table></figure>
+<li><p>安装安装zabbix包</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y zabbix-<span class="keyword">server</span>-mysql zabbix-web-mysql</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>将mongdb移至/usr/local</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv mongodb-linux-x86_64-amazon-3.4.6 /usr/local/mongodb-3.4.6</span><br></pre></td></tr></table></figure>
+<li><p>安装客户端(如果服务端不需要监控略过此步)</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y zabbix-<span class="keyword">agent</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建mongodb.conf</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mongodb-3.4.6</span><br><span class="line">touch mongodb.conf</span><br><span class="line">vi mongodb.conf</span><br></pre></td></tr></table></figure>
-<p> mongdb.conf写入以下内容</p>
- <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">port</span>=<span class="number">27017</span></span><br><span class="line"><span class="comment">#数据文件存放目录</span></span><br><span class="line"><span class="attr">dbpath</span>=/opt/mongodb/data</span><br><span class="line"><span class="comment">#日志文件路径</span></span><br><span class="line"><span class="attr">logpath</span>=/opt/mongodb/log/mongodb.log</span><br><span class="line"><span class="comment">#使用追加的方式写日志</span></span><br><span class="line"><span class="attr">logappend</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment">#以守护程序的方式启动，即在后台运行</span></span><br><span class="line"><span class="attr">fork</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment">#最大同时连接数，默认2000</span></span><br><span class="line"><span class="attr">maxConns</span>=<span class="number">2000</span></span><br><span class="line"><span class="comment">#允许所有IP访问，如果要限制访问，可指定以逗号分隔的ip地址</span></span><br><span class="line"><span class="attr">bind_ip</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line"><span class="comment">#是否启用身份认证</span></span><br><span class="line"><span class="attr">auth</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">nohttpinterface</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">rest</span>=<span class="literal">false</span></span><br><span class="line"><span class="comment">#复制集名称</span></span><br><span class="line"><span class="comment">#replSet=test1</span></span><br></pre></td></tr></table></figure>
+<li><p>导入MySQL安装源</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh https:<span class="regexp">//</span>repo.mysql.com<span class="regexp">//my</span>sql57-community-release-el7-<span class="number">11</span>.noarch.rpm</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建数据目录及日志目录</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /opt/mongodb/data</span><br><span class="line">mkdir -p /opt/mongodb/log</span><br><span class="line">touch /opt/mongodb/log/mongodb.log</span><br></pre></td></tr></table></figure>
+<li><p>用yum安装MySQL，并设置开机启动</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> mysql-community-<span class="keyword">server</span></span><br><span class="line">systemctl <span class="keyword">enable</span> mysqld  #设置开机启动</span><br><span class="line">systemctl <span class="keyword">start</span> mysqld  #启动服务</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建启动脚本</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch start.sh</span><br></pre></td></tr></table></figure>
-<p> 写入一下内容</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">bin/mongod -f mongodb.conf</span><br></pre></td></tr></table></figure>
-<p> 赋予脚本权限</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x start.sh</span><br></pre></td></tr></table></figure>
-<p> 使用脚本启动服务</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
+<li><p>MySQL修改root本地登录密码</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root  -<span class="selector-tag">p</span> oldpass password <span class="string">"123456"</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>设置mongodb开机启动<br> 添加mongodb系统服务</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/init.d/mongod</span><br></pre></td></tr></table></figure>
-<p> 写入一下内容</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">ulimit</span> -SHn 655350</span><br><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># chkconfig: - 64 36</span></span><br><span class="line"><span class="comment"># description:mongod</span></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongod  --config /usr/<span class="built_in">local</span>/mongodb-3.4.6/mongodb.conf</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongo 127.0.0.1:27017/admin --<span class="built_in">eval</span> <span class="string">"db.auth('root','123456');db.shutdownServer()"</span></span><br><span class="line">;;</span><br><span class="line"><span class="comment">#db.auth('root','123456');当数据库进行了用户认证时，才需要加这一句，root和123456为用户名和密码</span></span><br><span class="line">status)</span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-3.4.6/bin/mongo 127.0.0.1:27017/admin --<span class="built_in">eval</span> <span class="string">"db.stats()"</span></span><br><span class="line">;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-<p> 保存后，赋予脚本执行权限</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /ect/rc.d/init.d/mongod</span><br></pre></td></tr></table></figure>
-<p> 启动mongodb服务</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mongod start</span><br></pre></td></tr></table></figure>
-<p> 关闭mongodb服务</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mongod stop</span><br></pre></td></tr></table></figure>
-<p> 将此服务设置为开机启动</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig mongod on</span><br></pre></td></tr></table></figure>
-<p> 输入以上命令后重启，开启后输入一下指令验证mongodb是否启动(检测端口时候在使用中)</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :27017</span><br></pre></td></tr></table></figure>
+<li><p>登录MySQL并创建数据库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create database zabbix character <span class="built_in">set</span> utf8 collate utf8_bin;</span></span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> grant all privileges on zabbix.* to zabbix@localhost identified by <span class="string">'123456'</span>;</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> quit</span></span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化数据</p>
+ <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="meta-keyword">/usr/</span>share<span class="meta-keyword">/doc/</span>zabbix-server-mysql<span class="number">-4.0</span><span class="number">.0</span>/</span><br><span class="line">zcat create.sql.gz | mysql -uroot -p zabbix</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改zabbix配置文件，启动zabbix服务，设置开机自启动</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/zabbix/zabbix_server.conf</span><br><span class="line"><span class="meta">#</span><span class="bash">DBHost=localhost</span></span><br><span class="line"><span class="meta">#</span><span class="bash">DBPassword=Admin@123</span></span><br><span class="line"><span class="meta">#</span><span class="bash">备注：实际上我的配置文件修改的是DBHost和DBPassword去掉前面的<span class="comment">#号</span></span></span><br><span class="line">systemctl start zabbix-server</span><br><span class="line">systemctl enable zabbix-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑zabbix前端的PHP配合配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php_value date.timezone Asia/Shanghai</span><br><span class="line"><span class="meta">#</span><span class="bash">备注：实际上就是修改了时区</span></span><br><span class="line"><span class="meta">#</span><span class="bash">启动apache服务，设置开机自启动</span></span><br><span class="line">systemctl start httpd</span><br><span class="line">systemctl enable httpd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登陆zabbix。<a href="http://IP/zabbix/" target="_blank" rel="noopener">http://IP/zabbix/</a></p>
 </li>
 </ol>
-<hr>
-<p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p>
-<hr>
+<h3 id="安装zabbix-agent"><a href="#安装zabbix-agent" class="headerlink" title="安装zabbix-agent"></a>安装zabbix-agent</h3><ol>
+<li><p>导入zabbix安装源</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http:<span class="regexp">//</span>repo.zabbix.com<span class="regexp">/zabbix/</span><span class="number">3.5</span><span class="regexp">/rhel/</span><span class="number">7</span><span class="regexp">/x86_64/</span>zabbix-release-<span class="number">3.5</span>-<span class="number">1</span>.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装客户端(如果服务端不需要监控略过此步)</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y zabbix-<span class="keyword">agent</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置zabbix-agent</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/zabbix/zabbix_agentd.conf  </span><br><span class="line"><span class="comment">#修改配置文件中的Server, ServerActive的IP, 该IP是zabbix服务端IP地址  </span></span><br><span class="line"><span class="attribute">Server</span>=zabbix<span class="built_in"> server ip </span> </span><br><span class="line"><span class="attribute">ServerActive</span>=zabbix<span class="built_in"> server ip </span> </span><br><span class="line"><span class="attribute">Hostname</span>=本机Ip #不要用127.0.0.1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="zabbix启动报cannot-set-resource-limit-13-Permission-denied问题"><a href="#zabbix启动报cannot-set-resource-limit-13-Permission-denied问题" class="headerlink" title="zabbix启动报cannot set resource limit: [13] Permission denied问题"></a>zabbix启动报cannot set resource limit: [13] Permission denied问题</h4><ol>
+<li><p>常规方法</p>
+<ul>
+<li><p>关闭selinux（不推荐）</p>
+  <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新selinux策略即可</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yum</span> <span class="selector-tag">update</span> <span class="selector-tag">selinux-policy</span><span class="selector-class">.noarch</span> <span class="selector-tag">selinux-policy-targeted</span><span class="selector-class">.noarch</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>针对CentOS7</p>
+<ul>
+<li><p>安装selinux相关工具</p>
+  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> policycoreutils-python</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果是server_agent端，则按照以下操作进行</p>
+  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> /var/<span class="built_in">log</span>/audit/audit.<span class="built_in">log</span> | <span class="keyword">grep</span> zabbix_agentd | <span class="keyword">grep</span> denied | audit2allow -M zabbix_agent_setrlimit</span><br></pre></td></tr></table></figure>
+<p>  执行上述命令后，会在当前目录生成一个名为zabbix_agent_setrlimit.pp的文件，接下来执行以下命令</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">semodule -<span class="selector-tag">i</span> zabbix_agent_setrlimit.pp</span><br></pre></td></tr></table></figure>
+<p>  如果是server端，则按照如下方法执行即可</p>
+  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> /var/<span class="built_in">log</span>/audit/audit.<span class="built_in">log</span> | <span class="keyword">grep</span> zabbix_server | <span class="keyword">grep</span> denied | audit2allow -M zabbix_server_setrlimit</span><br><span class="line">semodule -i zabbix_server_setrlimit.<span class="keyword">pp</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
 
       
 
@@ -303,7 +312,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/26/CentOS 7下安装mongodb/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/09/安装zabbix监控mongodb/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,18 +326,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/26/CentOS 7下mongodb复制集群/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mongodb复制集群
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/26/linux压缩解压指令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">linux压缩解压指令</div>
+    <a href="/2018/01/02/CentOS 安装Tomcat7并启用APR模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS 安装Tomcat7并启用APR模式</div>
       <i class="icon-circle-right"></i>
     </a>
   

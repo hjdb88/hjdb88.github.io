@@ -159,6 +159,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mac下更新ruby" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/04/mac下更新ruby/">mac下更新ruby</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/04/mac下更新ruby/" class="archive-article-date">
+  	<time datetime="2017-11-04T12:13:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><pre><code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="通过-brew-安装-Ruby-最新版本"><a href="#通过-brew-安装-Ruby-最新版本" class="headerlink" title="通过 brew 安装 Ruby 最新版本"></a>通过 brew 安装 Ruby 最新版本</h3><pre><code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install ruby</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><ol>
+<li><p>修改文件</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加一下内容</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RUBY_HOME</span>=/usr/local/Cellar/ruby/2.4.2_1</span><br><span class="line"><span class="attribute">PAHT</span>=<span class="variable">$RUBY_HOME</span>/bin:$PAHT</span><br><span class="line"><span class="builtin-name">export</span> PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使环境变量配置生效</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="查看是否配置是否生效"><a href="#查看是否配置是否生效" class="headerlink" title="查看是否配置是否生效"></a>查看是否配置是否生效</h3><pre><code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -v</span><br></pre></td></tr></table></figure>
+
+以下结果代表安装成功
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="number">2.4</span><span class="number">.2</span>p198 (<span class="number">2017</span><span class="number">-09</span><span class="number">-14</span> revision <span class="number">59899</span>) [x86_64-darwin16]</span><br></pre></td></tr></table></figure>
+</code></pre><hr>
+<p>分享使人进步，文章为作者工作经验总结、平时学习积累，有不对的地方欢迎指出，共同进步。<br>作者邮箱：mr.jinbinghuang@gmail.com<br>版权声明：本文版权归作者所有，欢迎转载，转载请注明出处。</p>
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/04/mac下更新ruby/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

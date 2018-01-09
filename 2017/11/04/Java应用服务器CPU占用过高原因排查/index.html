@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java应用服务器CPU占用过高原因排查 | hjdb88&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)1top     查看进程中耗时长的线程1top -p 1190 -H   或者1ps -mp 1190 -o THREAD,tid,time | sort -rn    将该线程ID转换成16进制1printf &quot;%x\n&quot; 1462     借助JDK内置工具jstack查看具体的线程状态1jst">
+  <meta name="description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)  1top    查看进程中耗时长的线程  1top -p 1190 -H  或者  1ps -mp 1190 -o THREAD,tid,time | sort -rn      将该线程ID转换成16进制  1printf &quot;%x\n&quot; 1462    借助JDK内置工具jstack查看具体的线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java应用服务器CPU占用过高原因排查">
 <meta property="og:url" content="http://yoursite.com/2017/11/04/Java应用服务器CPU占用过高原因排查/index.html">
 <meta property="og:site_name" content="hjdb88&#39;s blog">
-<meta property="og:description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)1top     查看进程中耗时长的线程1top -p 1190 -H   或者1ps -mp 1190 -o THREAD,tid,time | sort -rn    将该线程ID转换成16进制1printf &quot;%x\n&quot; 1462     借助JDK内置工具jstack查看具体的线程状态1jst">
+<meta property="og:description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)  1top    查看进程中耗时长的线程  1top -p 1190 -H  或者  1ps -mp 1190 -o THREAD,tid,time | sort -rn      将该线程ID转换成16进制  1printf &quot;%x\n&quot; 1462    借助JDK内置工具jstack查看具体的线">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8752864-4d4c1ca9fcf1818a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8752864-93a0b4bda6d8edf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8752864-ce9964fb2cf2a699.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8752864-d9db086e439155f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8752864-9c9dab067a14f194.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-02T12:55:53.000Z">
+<meta property="og:updated_time" content="2018-01-03T15:41:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java应用服务器CPU占用过高原因排查">
-<meta name="twitter:description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)1top     查看进程中耗时长的线程1top -p 1190 -H   或者1ps -mp 1190 -o THREAD,tid,time | sort -rn    将该线程ID转换成16进制1printf &quot;%x\n&quot; 1462     借助JDK内置工具jstack查看具体的线程状态1jst">
+<meta name="twitter:description" content="问题Java应用服务器进程出现CPU占用率过高情况 排查过程 找到占用CPU高的进程ID(PID)  1top    查看进程中耗时长的线程  1top -p 1190 -H  或者  1ps -mp 1190 -o THREAD,tid,time | sort -rn      将该线程ID转换成16进制  1printf &quot;%x\n&quot; 1462    借助JDK内置工具jstack查看具体的线">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8752864-4d4c1ca9fcf1818a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="hjdb88&#39;s blog" type="application/atom+xml">
@@ -186,29 +186,27 @@
       
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>Java应用服务器进程出现CPU占用率过高情况</p>
 <h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><ol>
-<li>找到占用CPU高的进程ID(PID)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<li><p>找到占用CPU高的进程ID(PID)</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/8752864-4d4c1ca9fcf1818a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="找到占用CPU高的进程"></p>
 </li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/8752864-4d4c1ca9fcf1818a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="找到占用CPU高的进程"></p>
-<ol>
-<li>查看进程中耗时长的线程<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -p 1190 -H</span><br></pre></td></tr></table></figure>
+<li><p>查看进程中耗时长的线程</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -p 1190 -H</span><br></pre></td></tr></table></figure>
+<p> 或者</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -mp 1190 -o THREAD,tid,time | sort -rn</span><br></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/8752864-93a0b4bda6d8edf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法一"></p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/8752864-ce9964fb2cf2a699.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法二"></p>
 </li>
-</ol>
-<p>或者<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -mp 1190 -o THREAD,tid,time | sort -rn</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/8752864-93a0b4bda6d8edf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法一"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/8752864-ce9964fb2cf2a699.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="方法二"></p>
-<ol>
-<li>将该线程ID转换成16进制<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf "%x\n" 1462</span><br></pre></td></tr></table></figure>
+<li><p>将该线程ID转换成16进制</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf "%x\n" 1462</span><br></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/8752864-d9db086e439155f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换结果"></p>
 </li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/8752864-d9db086e439155f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换结果"></p>
-<ol>
-<li>借助JDK内置工具jstack查看具体的线程状态<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 1190 |grep 5b6 -A 30</span><br></pre></td></tr></table></figure>
+<li><p>借助JDK内置工具jstack查看具体的线程状态</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 1190 |grep 5b6 -A 30</span><br></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/8752864-9c9dab067a14f194.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线程状态"></p>
 </li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/8752864-9c9dab067a14f194.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线程状态"></p>
-<ol>
-<li>通过线程状态找出问题所在</li>
+<li><p>通过线程状态找出问题所在</p>
+</li>
 </ol>
 <p>PS：本文图片为写本文章时添加的示例图</p>
 <hr>
